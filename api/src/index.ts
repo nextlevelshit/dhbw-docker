@@ -1,11 +1,11 @@
 import "reflect-metadata";
 import debug from "debug";
-import {App, shutdown, failOnShutdown, seedDataSource} from "./App";
-import {isDevelopment, routesKey, prefixKey} from "./config/constants";
+import {App, shutdown, failOnShutdown} from "./App";
 import {UserController} from "./controller/UserController";
 import {AppDataSource} from "./AppDataSource";
 import {RouteController, Route} from "./config/types";
 import {PartyController} from "./controller/PartyController";
+import {getRoutesFromMetadata} from "./helper/getRoutesFromMetadata";
 
 const logger = debug("app:i:index");
 const verbose = debug("app:v:index");
@@ -23,49 +23,20 @@ App.bootstrap()
 		 */
 		App.attachHealthCheck();
 		/**
-		 * Attach the controllers to the application
+		 * Init and attach the controllers to the application
 		 */
-		const controllers: RouteController<unknown>[] = [
+		const controllers: RouteController<any>[] = [
 			new UserController(AppDataSource),
 			new PartyController(AppDataSource),
 		];
 
 		controllers.forEach((controller) => {
 			/**
-			 * Retrieve the routes from the controller
-			 */
-			const routesWithoutPrefix = Reflect.getMetadata(
-				routesKey,
-				controller.constructor,
-			) as Route[];
-			/**
-			 * Retrieve the prefix from the controller
-			 */
-			const prefix = Reflect.getMetadata(
-				prefixKey,
-				controller.constructor,
-			) as string;
-			/**
-			 * Prepend the associated prefix to each route
-			 */
-			const routes = routesWithoutPrefix.map(
-				(route) =>
-					({
-						...route,
-						path: `${prefix}${route.path}`,
-					}) as Route,
-			);
-			/**
 			 * Attach the routes to the application together with the associated prefix
 			 */
+			const routes = getRoutesFromMetadata(controller);
 			App.attachRoutes(routes, controller);
 		});
-		/**
-		 * Seed the data source with fake data in case of development
-		 */
-		if (isDevelopment) {
-			await seedDataSource();
-		}
 	})
 	.catch((e) => {
 		/**

@@ -2,6 +2,8 @@
     query \
     migration\:create migration\:generate migration\:revert migration\:run migration\:list
 
+.env:
+	cp .env.example .env
 
 dev:
 	docker-compose -p "dhbw-docker-app" \

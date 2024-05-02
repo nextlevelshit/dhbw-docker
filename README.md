@@ -22,6 +22,10 @@ Before you start, make sure you have the following installed:
     - `DATABASE_PASSWORD`: The password for the database.
     - `DATABASE_NAME`: The name of the database.
 
+    ```bash
+    make .env
+    ```
+
 4. Build and start the services using Docker Compose. You can use the provided Makefile for this. Run the following command in your terminal:
 
     ```bash

@@ -24,9 +24,9 @@ Before you start, make sure you have the following installed:
    
    Adjust the environment variables in the `.env` file according to your setup. The following environment variables are required:
 
-    - `DATABASE_USERNAME`: The username for the database.
-    - `DATABASE_PASSWORD`: The password for the database.
-    - `DATABASE_NAME`: The name of the database.
+    - `DATABASE_USERNAME` The username for the database.
+    - `DATABASE_PASSWORD` The password for the database.
+    - `DATABASE_NAME` The name of the database.
 
 4. Build and start the services using Docker Compose. You can use the provided Makefile for this. Run the following command in your terminal:
 
@@ -54,21 +54,21 @@ Before you start, make sure you have the following installed:
 
 The Makefile provides additional commands for database migrations and queries:
 
-- `make migration:create`: Create a new TypeORM migration.
-- `make migration:generate`: Generate a TypeORM migration from changes in the entities.
-- `make migration:revert`: Revert the last TypeORM migration.
-- `make migration:run`: Run pending TypeORM migrations.
-- `make migration:list`: Show a list of applied TypeORM migrations.
-- `make query`: Execute a TypeORM query.
+- `make migration:create` Create a new TypeORM migration.
+- `make migration:generate` Generate a TypeORM migration from changes in the entities.
+- `make migration:revert` Revert the last TypeORM migration.
+- `make migration:run` Run pending TypeORM migrations.
+- `make migration:list` Show a list of applied TypeORM migrations.
+- `make query` Execute a TypeORM query.
 
 ## API Development
 
 For API development, navigate to the `api` directory. The API is built with TypeScript and uses npm for package management. The following commands are available:
 
-- `npm test`: Run tests.
-- `npm run lint`: Check for linting errors.
-- `npm run lint:fix`: Fix linting errors.
-- `npm run build`: Build the project.
+- `npm test` Run tests.
+- `npm run lint` Check for linting errors.
+- `npm run lint:fix` Fix linting errors.
+- `npm run build` Build the project.
 
 For more details, refer to the [README.md](/api/README.md) file in the `api` directory.
 

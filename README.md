@@ -16,15 +16,17 @@ Before you start, make sure you have the following installed:
 
 2. Navigate to the root directory of the project.
 
-3. Copy the `.env.example` file to a new file named `.env` in the same directory. Adjust the environment variables in the `.env` file according to your setup. The following environment variables are required:
+3. Copy the `.env.example` file to a new file named `.env` in the same directory.
+   
+   ```bash
+   make .env
+    ```
+   
+   Adjust the environment variables in the `.env` file according to your setup. The following environment variables are required:
 
     - `DATABASE_USERNAME`: The username for the database.
     - `DATABASE_PASSWORD`: The password for the database.
     - `DATABASE_NAME`: The name of the database.
-
-    ```bash
-    make .env
-    ```
 
 4. Build and start the services using Docker Compose. You can use the provided Makefile for this. Run the following command in your terminal:
 

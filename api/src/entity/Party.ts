@@ -14,6 +14,9 @@ export class Party {
 	@Column()
 	date: string;
 
-	@Column()
-	time?: Date;
+	@Column({nullable: true})
+	time?: string;
+
+	@Column({nullable: true})
+	category?: string;
 }

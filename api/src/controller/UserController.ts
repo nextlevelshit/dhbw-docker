@@ -16,14 +16,14 @@ export class UserController implements RouteController<User> {
 		this.repository = appDataSource.getRepository(User);
 	}
 
-	@Get("/info")
-	async info() {
-		return this.repository.count();
-	}
-
 	@Get("/")
 	async all() {
 		return this.repository.find();
+	}
+
+	@Get("/info")
+	async info() {
+		return this.repository.count();
 	}
 
 	@Get("/:id")

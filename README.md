@@ -20,7 +20,7 @@ Before you start, make sure you have the following installed:
    
    ```bash
    make .env
-    ```
+   ```
    
    Adjust the environment variables in the `.env` file according to your setup. The following environment variables are required:
 
@@ -48,7 +48,7 @@ Before you start, make sure you have the following installed:
     make dev:down
     ```
 
-5. Once the services are up and running, you can access the API at `http://localhost:10000`.
+5. Once the services are up and running, you can access the API at `http://localhost:10000/api`.
 
 ## Additional Commands
 

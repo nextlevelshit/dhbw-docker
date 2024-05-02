@@ -16,10 +16,7 @@ export const getRoutesFromMetadata = (controller: RouteController<any>) => {
 	/**
 	 * Retrieve the prefix from the controller
 	 */
-	const prefix = Reflect.getMetadata(
-		prefixKey,
-		controller.constructor,
-	) as string;
+	const prefix = Reflect.getMetadata(prefixKey, controller.constructor) as string;
 	/**
 	 * Prepend the associated prefix to each route
 	 */
@@ -30,4 +27,4 @@ export const getRoutesFromMetadata = (controller: RouteController<any>) => {
 				path: `${prefix}${route.path}`,
 			}) as Route,
 	);
-}
+};

@@ -11,19 +11,19 @@ import {
 } from "./config/constants";
 import {SeedFakeUsers0000000000100} from "./migration/0000000000100-SeedFakeUsers";
 
-const additionalOptions = isDevelopment ? {
-	// Development environment
-	logging: false,
-	synchronize: true,
-	migrations: [
-		SeedFakeUsers0000000000100
-	]
-} : {
-	// Production environment
-	logging: false,
-	synchronize: false,
-	migrations: [],
-}
+const additionalOptions = isDevelopment
+	? {
+			// Development environment
+			logging: true,
+			synchronize: true,
+			migrations: [SeedFakeUsers0000000000100],
+		}
+	: {
+			// Production environment
+			logging: false,
+			synchronize: false,
+			migrations: [],
+		};
 
 export const AppDataSource = new DataSource({
 	type: "postgres",
@@ -32,10 +32,8 @@ export const AppDataSource = new DataSource({
 	username: databaseUsername,
 	password: databasePassword,
 	database: databaseName,
-	synchronize: true,
-	logging: false,
 	entities: [User, Party],
-	migrations: [],
+	migrationsTableName: "migrations",
 	subscribers: [],
-	...additionalOptions
+	...additionalOptions,
 });

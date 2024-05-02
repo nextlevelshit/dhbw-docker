@@ -1,5 +1,5 @@
 export const port = process.env.PORT ? parseInt(process.env.PORT) : 8080;
-export const isDevelopment = "production" !== process.env.NODE_ENV;
+export const isDevelopment = process.env.NODE_ENV === "developement";
 export const routesKey = Symbol("routes");
 export const prefixKey = Symbol("prefix");
 export const databaseHost = process.env.DATABASE_HOST!;

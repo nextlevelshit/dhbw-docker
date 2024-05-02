@@ -3,14 +3,32 @@ import {fakerDE as faker} from "@faker-js/faker";
 import {Party} from "../entity/Party";
 
 function createParty(): Partial<Party> {
-	const category = faker.helpers.arrayElement(["techno", "dnb", "student", "hiphop", "rock", "jazz", "pop", "metal", "indie", "reggae"]);
+	const category = faker.helpers.arrayElement([
+		"techno",
+		"dnb",
+		"student",
+		"hiphop",
+		"rock",
+		"jazz",
+		"pop",
+		"metal",
+		"indie",
+		"reggae",
+	]);
 
 	return {
 		category,
 		date: faker.date.soon().toString().split("T")[0],
 		location: faker.location.city(),
-		name: (`${faker.word.adjective()} ${category} Party`).toUpperCase(),
-		time: faker.helpers.arrayElement(["20:00", "18:00", "22:00", "19:00", "21:00", "23:59"]),
+		name: `${faker.word.adjective()}e ${category} Party`.toUpperCase(),
+		time: faker.helpers.arrayElement([
+			"20:00",
+			"18:00",
+			"22:00",
+			"19:00",
+			"21:00",
+			"23:59",
+		]),
 	};
 }
 

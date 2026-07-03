@@ -6,7 +6,7 @@
 	cp .env.example .env
 
 dev:
-	docker-compose -p "dhbw-docker-app" \
+	docker compose -p "dhbw-docker-app" \
 		-f compose.yml \
 		--env-file .env \
 		up \
@@ -15,7 +15,7 @@ dev:
 		--force-recreate
 
 dev\:up:
-	docker-compose -p "dhbw-docker-app" \
+	docker compose -p "dhbw-docker-app" \
 		-f compose.yml \
 		--env-file .env \
 		up \
@@ -25,7 +25,7 @@ dev\:up:
 		--force-recreate
 
 dev\:down:
-	docker-compose -p "dhbw-docker-app" down
+	docker compose -p "dhbw-docker-app" down
 
 query:
 	@docker exec dhbw-api npm run typeorm query "$(filter-out $@,$(MAKECMDGOALS))" -- -d src/AppDataSource.ts

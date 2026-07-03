@@ -1,0 +1,22 @@
+# Minimal example — start here before looking at compose.yml
+#
+# Start:  docker compose -f compose.example.yml up
+# Stop:   docker compose -f compose.example.yml down
+#
+# Then open: http://localhost:10001/?message=hello
+name: "dhbw-docker-example"
+
+services:
+  echo:
+    image: ealen/echo-server:latest
+    container_name: dhbw-echo
+    environment:
+      PORT: 8080
+    ports:
+      - "10001:8080" # host:container
+    healthcheck:
+      # runs inside the container: exit code 0 = healthy
+      test: wget --no-verbose --spider http://localhost:8080 || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 3

@@ -53,7 +53,7 @@ services:
     volumes:
       - ./proxy/nginx.conf:/etc/nginx/nginx.conf:ro
     ports:
-      - "10007:80"
+      - "10000:80"
     networks:
       - net
 

@@ -3,6 +3,7 @@ import {Controller} from "../decorator/Controller";
 import {Get} from "../decorator/Get";
 import {RouteController} from "../config/types";
 import {Party} from "../entity/Party";
+import {Request} from "express";
 
 @Controller("/party")
 export class PartyController implements RouteController<Party> {
@@ -12,51 +13,18 @@ export class PartyController implements RouteController<Party> {
 		this.repository = appDataSource.getRepository(Party);
 	}
 
-	@Get("/techno")
-	allTechno(): Party[] {
-		return [
-			{
-				id: 0,
-				name: "Techno Party",
-				location: "Berlin",
-				date: "2024-05-20",
-			},
-			{
-				id: 0,
-				name: "Techno Party",
-				location: "Berlin",
-				date: "2024-05-29",
-			},
-			{
-				id: 0,
-				name: "Techno Party",
-				location: "Berlin",
-				date: "2024-05-23",
-			},
-		];
+	@Get("/")
+	async all() {
+		return this.repository.find();
 	}
 
-	@Get("/dnb")
-	allDnb(): Party[] {
-		return [
-			{
-				id: 0,
-				name: "Drum and Bass Party",
-				location: "Bristol (UK)",
-				date: "2024-08-13",
+	@Get("/:category")
+	async category(req: Request) {
+		const category = req.params.category;
+		return this.repository.find({
+			where: {
+				category,
 			},
-			{
-				id: 0,
-				name: "Drum and Bass Party",
-				location: "Heidelberg",
-				date: "2024-06-01",
-			},
-			{
-				id: 0,
-				name: "Drum and Bass Party",
-				location: "Heidelberg",
-				date: "2024-04-11",
-			},
-		];
+		});
 	}
 }
